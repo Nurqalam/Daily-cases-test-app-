@@ -14,6 +14,7 @@
 		B516C8FE27A69D2C006CB016 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B516C8FD27A69D2C006CB016 /* Assets.xcassets */; };
 		B516C90127A69D2C006CB016 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B516C8FF27A69D2C006CB016 /* LaunchScreen.storyboard */; };
 		B516C91D27A6A6E7006CB016 /* DataStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B516C91B27A6A6E7006CB016 /* DataStore.xcdatamodeld */; };
+		B516C92627A6EAA9006CB016 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B516C92527A6EAA9006CB016 /* CategoryViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		B516C90027A69D2C006CB016 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B516C90227A69D2C006CB016 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B516C91C27A6A6E7006CB016 /* DataStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataStore.xcdatamodel; sourceTree = "<group>"; };
+		B516C92527A6EAA9006CB016 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 		B516C90A27A6A038006CB016 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				B516C92527A6EAA9006CB016 /* CategoryViewController.swift */,
 				B516C8F527A69D2B006CB016 /* TodoListViewController.swift */,
 			);
 			path = Controllers;
@@ -172,6 +175,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B516C92627A6EAA9006CB016 /* CategoryViewController.swift in Sources */,
 				B516C8F627A69D2B006CB016 /* TodoListViewController.swift in Sources */,
 				B516C91D27A6A6E7006CB016 /* DataStore.xcdatamodeld in Sources */,
 				B516C8F227A69D2B006CB016 /* AppDelegate.swift in Sources */,

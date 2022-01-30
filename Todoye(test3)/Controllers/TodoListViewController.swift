@@ -16,6 +16,7 @@ class TodoListViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("Hello")
 
         print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
         
@@ -30,7 +31,8 @@ class TodoListViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         let item = listArray[indexPath.row]
-        cell.textLabel?.text = listArray[indexPath.row].title
+        
+        cell.textLabel?.text = item.title
         cell.textLabel?.font = .systemFont(ofSize: 17, weight: .semibold)
         
         cell.accessoryType = item.done ? .checkmark : .none
@@ -38,15 +40,15 @@ class TodoListViewController: UITableViewController {
         return cell
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
         
 //        context.delete(listArray[indexPath.row])
 //        listArray.remove(at: indexPath.row)
-        
+//
         listArray[indexPath.row].done = !listArray[indexPath.row].done
         
         saveItems()
-            
+        
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
