@@ -7,6 +7,7 @@
 
 import UIKit
 import RealmSwift
+import ChameleonFramework
 
 class TodoListViewController: SwipeTableViewController {
     
@@ -35,10 +36,16 @@ class TodoListViewController: SwipeTableViewController {
         cell.textLabel?.text = item?.title ?? "No categories yet"
         cell.textLabel?.font = .systemFont(ofSize: 17, weight: .semibold)
         cell.accessoryType = item?.done ?? false ? .checkmark : .none
-
+        
+        if let colour = UIColor(hexString: selectedCategory!.categoryColor)?.darken(byPercentage: CGFloat(indexPath.row) / CGFloat(todoItems!.count)) {
+            cell.backgroundColor = colour
+            cell.textLabel?.textColor = ContrastColorOf(colour, returnFlat: true)
+        }
+        
+        
         return cell
     }
-
+    
     
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

@@ -7,7 +7,7 @@
 
 import UIKit
 import RealmSwift
-
+import ChameleonFramework
 
 
 class CategoryViewController: SwipeTableViewController {
@@ -32,12 +32,16 @@ class CategoryViewController: SwipeTableViewController {
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let catItem = categoryList?[indexPath.row]
         
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
         
-        cell.textLabel?.text = catItem?.name ?? "No categories yet"
-        cell.textLabel?.font = .systemFont(ofSize: 17, weight: .semibold)
+        if let catItem = categoryList?[indexPath.row] {
+            cell.textLabel?.text = catItem.name
+            
+            cell.backgroundColor = UIColor(hexString: catItem.categoryColor)
+
+        }
+        
         return cell
     }
     
@@ -49,7 +53,7 @@ class CategoryViewController: SwipeTableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let destionationVC = segue.destination as! TodoListViewController
+        let destionationVC = segue.destination as! TodoListViewController                           
         
         if let indexPath = tableView.indexPathForSelectedRow {
             destionationVC.selectedCategory = categoryList?[indexPath.row]
@@ -68,6 +72,8 @@ class CategoryViewController: SwipeTableViewController {
             if let text = textF.text {
                 let newCat = Category()
                 newCat.name = text
+            
+                newCat.categoryColor = UIColor.randomFlat().hexValue()
                 
                 self.saveCat(category: newCat)
             }
@@ -100,6 +106,7 @@ class CategoryViewController: SwipeTableViewController {
     }
     
     func loadCat() {
+        
         categoryList = realm.objects(Category.self)
         
         tableView.reloadData()
