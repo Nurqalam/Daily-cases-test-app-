@@ -19,8 +19,38 @@ class TodoListViewController: SwipeTableViewController {
             loadItems()
         }
     }
+        
+    @IBOutlet weak var searchBar: UISearchBar!
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        tableView.separatorStyle = .none
+    }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        title = selectedCategory!.name
+        
+        
+        if let colorHex = selectedCategory?.categoryColor {
+            
+            guard let navBar = navigationController?.navigationBar else {
+                fatalError("Nav Controller Doesnt exist")
+                
+            }
+            
+            if let navBarColor = UIColor(hexString: colorHex) {
+                navBar.backgroundColor = UIColor(hexString: colorHex)
+                navBar.tintColor = ContrastColorOf(navBarColor, returnFlat: true)
+                navBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: ContrastColorOf(navBarColor, returnFlat: true)]
+                searchBar.tintColor = navBarColor
+
+            }
+            
+        }
+        
+    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return todoItems?.count ?? 1
@@ -37,7 +67,7 @@ class TodoListViewController: SwipeTableViewController {
         cell.textLabel?.font = .systemFont(ofSize: 17, weight: .semibold)
         cell.accessoryType = item?.done ?? false ? .checkmark : .none
         
-        if let colour = UIColor(hexString: selectedCategory!.categoryColor)?.darken(byPercentage: CGFloat(indexPath.row) / CGFloat(todoItems!.count)) {
+        if let colour = UIColor(hexString: selectedCategory!.categoryColor)?.darken(byPercentage: CGFloat(indexPath.row) / CGFloat(todoItems!.count * 2)) {
             cell.backgroundColor = colour
             cell.textLabel?.textColor = ContrastColorOf(colour, returnFlat: true)
         }

@@ -22,6 +22,14 @@ class CategoryViewController: SwipeTableViewController {
         loadCat()
         
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        guard let navBar = navigationController?.navigationBar else {
+            fatalError("Navigation controller dosnt exist")
+        }
+        navBar.backgroundColor = UIColor(hexString: "1D9BF6")
+    }
 
 
     
@@ -38,7 +46,9 @@ class CategoryViewController: SwipeTableViewController {
         if let catItem = categoryList?[indexPath.row] {
             cell.textLabel?.text = catItem.name
             
-            cell.backgroundColor = UIColor(hexString: catItem.categoryColor)
+            cell.textLabel?.textColor = UIColor(hexString: catItem.categoryColor)
+            
+            cell.textLabel?.font = .systemFont(ofSize: 17, weight: .semibold)
 
         }
         
